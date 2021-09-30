@@ -1,1 +1,1 @@
-javac Calificaciones.java && java Calificaciones
+javac Evidencia.java && java Evidencia

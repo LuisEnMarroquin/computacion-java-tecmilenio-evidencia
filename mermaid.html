@@ -1,0 +1,44 @@
+<html>
+
+  <!-- https://mermaid-js.github.io/mermaid/#/n00b-gettingStarted?id=working-examples -->
+  <!-- https://github.com/mermaid-js/mermaid/blob/develop/docs/n00b-gettingStarted.md -->
+
+  <!-- https://mermaid-js.github.io/mermaid-live-editor/edit#eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQW5pbWFsIDx8LS0gRHVja1xuICAgIEFuaW1hbCA8fC0tIEZpc2hcbiAgICBBbmltYWwgPHwtLSBaZWJyYVxuICAgIEFuaW1hbCA6ICtpbnQgYWdlXG4gICAgQW5pbWFsIDogK1N0cmluZyBnZW5kZXJcbiAgICBBbmltYWw6ICtpc01hbW1hbCgpXG4gICAgQW5pbWFsOiArbWF0ZSgpXG4gICAgY2xhc3MgRHVja3tcbiAgICAgICtTdHJpbmcgYmVha0NvbG9yXG4gICAgICArc3dpbSgpXG4gICAgICArcXVhY2soKVxuICAgIH1cbiAgICBjbGFzcyBGaXNoe1xuICAgICAgLWludCBzaXplSW5GZWV0XG4gICAgICAtY2FuRWF0KClcbiAgICB9XG4gICAgY2xhc3MgWmVicmF7XG4gICAgICArYm9vbCBpc193aWxkXG4gICAgICArcnVuKClcbiAgICB9XG4gICAgICAgICAgICAiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjp0cnVlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6dHJ1ZX0 -->
+
+<head>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  Here is one mermaid diagram:
+  <div class="mermaid">
+    graph TD
+      A[Client] --> B[Load Balancer]
+      B --> C[Server1]
+      B --> D[Server2]
+  </div>
+
+  And here is another:
+  <div class="mermaid">
+    graph TD
+      A[Client] -->|tcp_123| B(Load Balancer)
+      B -->|tcp_456| C[Server1]
+      B -->|tcp_456| D[Server2]
+  </div>
+
+  Here is a mermaid diagram:
+  <div class="mermaid">
+    graph TD
+      A[Client] --> B[Load Balancer]
+      B --> C[Server01]
+      B --> D[Server02]
+  </div>
+
+</body>
+
+</html>
