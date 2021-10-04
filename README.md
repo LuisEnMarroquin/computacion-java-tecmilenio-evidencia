@@ -6,24 +6,26 @@ Los requerimientos para editar este proyecto son:
 * IDE o Editor de texto Visual Studio Code.
 * Git y una cuenta en GitHub para subir el código.
 
-Para compilar el código, se debe ejecutar el siguiente comando:
+Para compilar el código, se debe ejecutar:
 
 ```shell
 javac Evidencia.java
 ```
 
-Esto generará un archivo `Evidencia.class` que se ejecuta con:
+Esto generará un archivo `Evidencia.class`
+
+# Uso del programa
+
+Para usar el programa, se debe ejecutar:
 
 ```shell
 java Evidencia
 ```
 
-# Uso del programa
-
-
-
 # Créditos
 
-
+Creado por Luis Marroquin: `github.com/LuisEnMarroquin`
 
 # Licencia
+
+Este proyecto maneja la licencia [MIT](https://opensource.org/licenses/MIT)
