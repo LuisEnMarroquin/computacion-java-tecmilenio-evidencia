@@ -7,6 +7,12 @@
 
 <head>
   <meta charset="utf-8" />
+  <style>
+    * {
+      font-family: sans-serif;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,28 +21,22 @@
     mermaid.initialize({ startOnLoad: true });
   </script>
 
-  Here is one mermaid diagram:
-  <div class="mermaid">
-    graph TD
-      A[Client] --> B[Load Balancer]
-      B --> C[Server1]
-      B --> D[Server2]
-  </div>
+  <h1>Diagrama de flujo</h1>
 
-  And here is another:
   <div class="mermaid">
-    graph TD
-      A[Client] -->|tcp_123| B(Load Balancer)
-      B -->|tcp_456| C[Server1]
-      B -->|tcp_456| D[Server2]
-  </div>
-
-  Here is a mermaid diagram:
-  <div class="mermaid">
-    graph TD
-      A[Client] --> B[Load Balancer]
-      B --> C[Server01]
-      B --> D[Server02]
+    flowchart TD
+      01(Ingresar usuario y contraseña) --> 02{Son válidos?};
+      02 -- Si --> 03(Pregunta si va a crear paciente, cita, doctor o salir de la aplicación);
+      02 -- No --> 04[Muestra que los datos son incorrectos y cierra la aplicación];
+      03 --> P1{Escogió pacientes};
+      P1 -- Si --> P2[Generar ID e Ingresar Nombre];
+      P2 --> P3[Guardar];
+      P3 --> P1;
+      P1 ---->|No| C1{Escogió citas};
+      C1 -- Si --> C2[Generar ID e Ingresar fecha, hora, motivo, paciente y doctor ];
+      C2 --> C3[Guardar];
+      C3 --> C1;
+      C1 ---->|No| D1{Escogió citas};
   </div>
 
 </body>
