@@ -1,16 +1,10 @@
 <html>
-
-  <!-- https://mermaid-js.github.io/mermaid/#/n00b-gettingStarted?id=working-examples -->
-  <!-- https://github.com/mermaid-js/mermaid/blob/develop/docs/n00b-gettingStarted.md -->
-
-  <!-- https://mermaid-js.github.io/mermaid-live-editor/edit#eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQW5pbWFsIDx8LS0gRHVja1xuICAgIEFuaW1hbCA8fC0tIEZpc2hcbiAgICBBbmltYWwgPHwtLSBaZWJyYVxuICAgIEFuaW1hbCA6ICtpbnQgYWdlXG4gICAgQW5pbWFsIDogK1N0cmluZyBnZW5kZXJcbiAgICBBbmltYWw6ICtpc01hbW1hbCgpXG4gICAgQW5pbWFsOiArbWF0ZSgpXG4gICAgY2xhc3MgRHVja3tcbiAgICAgICtTdHJpbmcgYmVha0NvbG9yXG4gICAgICArc3dpbSgpXG4gICAgICArcXVhY2soKVxuICAgIH1cbiAgICBjbGFzcyBGaXNoe1xuICAgICAgLWludCBzaXplSW5GZWV0XG4gICAgICAtY2FuRWF0KClcbiAgICB9XG4gICAgY2xhc3MgWmVicmF7XG4gICAgICArYm9vbCBpc193aWxkXG4gICAgICArcnVuKClcbiAgICB9XG4gICAgICAgICAgICAiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjp0cnVlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6dHJ1ZX0 -->
-
 <head>
   <meta charset="utf-8" />
   <style>
     * {
-      font-family: sans-serif;
       box-sizing: border-box;
+      font-family: sans-serif;
     }
   </style>
 </head>
@@ -26,17 +20,46 @@
   <div class="mermaid">
     flowchart TD
       01(Ingresar usuario y contraseña) --> 02{Son válidos?};
-      02 -- Si --> 03(Pregunta si va a crear paciente, cita, doctor o salir de la aplicación);
-      02 -- No --> 04[Muestra que los datos son incorrectos y cierra la aplicación];
-      03 --> P1{Escogió pacientes};
-      P1 -- Si --> P2[Generar ID e Ingresar Nombre];
-      P2 --> P3[Guardar];
-      P3 --> P1;
-      P1 ---->|No| C1{Escogió citas};
-      C1 -- Si --> C2[Generar ID e Ingresar fecha, hora, motivo, paciente y doctor ];
-      C2 --> C3[Guardar];
-      C3 --> C1;
-      C1 ---->|No| D1{Escogió citas};
+      02 -- Si --> 03(Pregunta si se desea crear un paciente, un doctor, una cita o salir de la aplicación);
+      02 -- No --> 04[Muestra que los datos son incorrectos] --> 05[Cierra la aplicación];
+      03 -- paciente --> P1[Ingresar Nombre] --> P2[Generar ID] --> 03;
+      03 -- doctor --> D1[Ingresar Nombre] --> D2[Ingresar Especialidad] --> D3[Generar ID] --> 03;
+      03 -- cita --> C1[Ingresar Fecha] --> C2[Ingresar Hora] --> C3[Ingresar Motivo] --> C4[Ingresar ID Paciente] --> C5[Ingresar ID Doctor] --> C6[Generar ID] --> 03;
+      03 -- salir --> 05
+  </div>
+
+  <h1>Diagrama de clases</h1>
+
+  <div class="mermaid">
+    classDiagram
+      Animal <|-- Paciente
+      Animal <|-- Cita
+      Animal <|-- Doctor
+      Animal : +String username
+      Animal : +String password
+      Animal: +main()
+      Animal: +iniciaSesión()
+      Animal: +elegirOpcion()
+      class Paciente {
+        +int ID
+        +String nombre
+        +nuevo()
+      }
+      class Cita {
+        +int ID
+        +String fecha
+        +String hora
+        +String motivo
+        +int pacienteID
+        +int doctorID
+        -nuevo()
+      }
+      class Doctor {
+        +int ID
+        +String nombre
+        +String especialidad
+        +nuevo()
+      }
   </div>
 
 </body>
