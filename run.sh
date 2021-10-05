@@ -1,1 +1,1 @@
-javac Evidencia.java && java Evidencia
+clear && javac Evidencia.java && java Evidencia
