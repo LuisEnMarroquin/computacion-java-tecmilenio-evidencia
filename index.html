@@ -35,17 +35,16 @@
       Evidencia <|-- Paciente
       Evidencia <|-- Cita
       Evidencia <|-- Doctor
-      Evidencia : +String username
-      Evidencia : +String password
-      Evidencia: +iniciaSesión()
-      Evidencia: +crearNuevo()
+      Evidencia : +String userName
+      Evidencia : +String userPass
+      Evidencia: +askInput()
       class Paciente {
         +long id
         +String nombre
         +getInfo()
       }
       class Cita {
-        +long ID
+        +long id
         +String fecha
         +String hora
         +String motivo
