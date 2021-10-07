@@ -37,28 +37,27 @@
       Evidencia <|-- Doctor
       Evidencia : +String username
       Evidencia : +String password
-      Evidencia: +main()
       Evidencia: +iniciaSesión()
-      Evidencia: +elegirOpcion()
+      Evidencia: +crearNuevo()
       class Paciente {
-        +int ID
+        +long id
         +String nombre
-        +nuevo()
+        +getInfo()
       }
       class Cita {
-        +int ID
+        +long ID
         +String fecha
         +String hora
         +String motivo
-        +int pacienteID
-        +int doctorID
-        -nuevo()
+        +String idPaciente
+        +String idDoctor
+        +getInfo()
       }
       class Doctor {
-        +int ID
+        +long id
         +String nombre
         +String especialidad
-        +nuevo()
+        +getInfo()
       }
   </div>
 

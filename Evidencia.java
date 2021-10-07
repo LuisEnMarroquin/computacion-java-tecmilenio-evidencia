@@ -1,59 +1,124 @@
 import java.util.Scanner;
+import java.time.Instant;
+import java.util.ArrayList;
 
-class Calificaciones {
-  static double calcularPromedio(int[] califs) {
-    double promedio = 0;
-    for (int i = 0; i < califs.length; i++) {
-      promedio += califs[i];
-    }
-    promedio = promedio / califs.length;
-    return promedio;
+final class Paciente {
+  private long id;
+  private String nombre;
+
+  public Paciente(String nombre) {
+    this.id = Instant.now().getEpochSecond();
+    this.nombre = nombre;
   }
 
-  static char calificacionFinal(double promedio) {
-    if (promedio >= 91) {
-      return 'A';
-    } else if (promedio >= 81) {
-      return 'B';
-    } else if (promedio >= 71) {
-      return 'C';
-    } else if (promedio >= 61) {
-      return 'D';
-    } else if (promedio >= 51) {
-      return 'E';
-    } else {
-      return 'F';
-    }
+  public void getInfo() {
+    System.out.println(this.id + " - " + this.nombre);
+  }
+}
+
+final class Doctor {
+  private long id;
+  private String nombre, especialidad;
+
+  public Doctor(String nombre, String especialidad) {
+    this.id = Instant.now().getEpochSecond();
+    this.nombre = nombre;
+    this.especialidad = especialidad;
   }
 
-  static void imprimirResultados(String nombre, int[] califs, double promedio, char calificacion) {
-    System.out.println("Nombre del estudiante: " + nombre);
-    for (int i = 0; i < califs.length; i++) {
-      System.out.println("Calificacion " + (i + 1) + ": " + califs[i]);
-    }
-    System.out.println("Promedio: " + promedio);
-    System.out.println("Calificacion: " + calificacion);
+  public void getInfo() {
+    System.out.println(this.id + " - " + this.nombre + " - " + this.especialidad);
+  }
+}
+
+final class Cita {
+  private long id;
+  private String fecha, hora, motivo, idPaciente, idDoctor;
+
+  public Cita(String fecha, String hora, String motivo, String idPaciente, String idDoctor) {
+    this.id = Instant.now().getEpochSecond();
+    this.fecha = fecha;
+    this.hora = hora;
+    this.motivo = motivo;
+    this.idPaciente = idPaciente;
+    this.idDoctor = idDoctor;
   }
 
-  public static void main(String args[]) {
+  public void getInfo() {
+    System.out.println(this.id + " - " + this.fecha + " - " + this.hora + " - " + this.motivo + " - " + this.idPaciente + " - " + this.idDoctor);
+  }
+}
 
-    Scanner textInput = new Scanner(System.in);
-    System.out.print("Nombre del estudiante: ");
-    String nombre = textInput.nextLine();
+public class Evidencia {
 
-    int[] califs = new int[5];
+  public static String askInput(Scanner inputScanner, String inputMessage) {
+    System.out.print("\n" + inputMessage + ": ");
+    String keyboardInput = inputScanner.nextLine();
+    return keyboardInput;
+  }
 
-    for (int i = 0; i < califs.length; i++) {
-      System.out.print("Calificacion " + (i + 1) + ": ");
-      califs[i] = textInput.nextInt();
+  public static void main(String[] args) {
+    Scanner inputScanner = new Scanner(System.in);
+    System.out.println("Inicio de sesión consultorio");
+
+    String userName = askInput(inputScanner, "Ingrese su usuario");
+    String userPass = askInput(inputScanner, "Ingrese su contraseña");
+
+    if (!userName.equals("admin") || !userPass.equals("12345")) {
+      System.out.println("***** Credenciales incorrectas *****");
+      System.exit(0);
     }
 
-    double promedio = calcularPromedio(califs);
-    char calificacion = calificacionFinal(promedio);
+    ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+    ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+    ArrayList<Cita> citas = new ArrayList<Cita>();
 
-    imprimirResultados(nombre, califs, promedio, calificacion);
+    while (true) {
+      System.out.println("\nMenú principal (elija una opción)");
+      System.out.println("- 0. Salir de la aplicación");
+      System.out.println("- 1. Agregar un doctor");
+      System.out.println("- 2. Agregar un paciente");
+      System.out.println("- 3. Agregar una cita");
+      System.out.println("- 4. Mostrar información guardada");
 
-    textInput.close();
+      String userText = askInput(inputScanner, "Ingrese el número de opción");
 
+      if (userText.equals("0")) {
+        break;
+      }
+
+      switch (userText) {
+        case "1":
+          String doctorNombre = askInput(inputScanner, "Ingrese el nombre");
+          String doctorEspecialidad = askInput(inputScanner, "Ingrese la especialidad nombre");
+          doctores.add(new Doctor(doctorNombre, doctorEspecialidad));
+          break;
+        case "2":
+          String pacienteNombre = askInput(inputScanner, "Ingrese el nombre");
+          pacientes.add(new Paciente(pacienteNombre));
+          break;
+        case "3":
+          String citaFecha = askInput(inputScanner, "Ingrese la fecha");
+          String citaHora = askInput(inputScanner, "Ingrese la hora");
+          String citaMotivo = askInput(inputScanner, "Ingrese el motivo");
+          String citaPaciente = askInput(inputScanner, "Ingrese el ID del paciente");
+          String citaDoctor = askInput(inputScanner, "Ingrese el ID del doctor");
+          citas.add(new Cita(citaFecha, citaHora, citaMotivo, citaPaciente, citaDoctor));
+          break;
+        case "4":
+          System.out.println("***** Listado de pacientes *****");
+          pacientes.forEach((n) -> n.getInfo());
+          System.out.println("***** Listado de doctores *****");
+          doctores.forEach((n) -> n.getInfo());
+          System.out.println("***** Listado de citas *****");
+          citas.forEach((n) -> n.getInfo());
+          break;
+        default:
+          System.out.println("***** Opción inválida *****");
+          break;
+      }
+    }
+
+    inputScanner.close();
   }
 }
